@@ -1,9 +1,8 @@
 from rest_framework.response import Response
-from django.template.context_processors import request
 from rest_framework import generics, permissions
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
 from .serializers import RegisterSerializer, UserSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
 
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()

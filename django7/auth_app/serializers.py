@@ -14,6 +14,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 class UserSerializer(serializers.ModelSerializer):
-    class Mata:
+    class Meta:
         model = CustomUser
         fields = ['id', 'email','name', 'role']
