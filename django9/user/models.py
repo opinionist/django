@@ -10,7 +10,7 @@ class CustomUserManager(BaseUserManager):
         user = self.model(email = email, **extra_fields)
         user.set_password(password)
         
-        if(user.role == 'amdin'):
+        if(user.role == 'admin'):
             user.is_staff = True
             user.is_superuser = True
         elif(user.role == 'teacher'):
@@ -24,6 +24,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault("role", "admin")
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
+        return self.create_user(email, password, **extra_fields)
         
         
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -38,6 +39,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    
+    objects = CustomUserManager()
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'role']
