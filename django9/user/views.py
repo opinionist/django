@@ -23,9 +23,9 @@ class LoginView(generics.GenericAPIView):
         if not user:
             return Response({"error" : "존재하지 않는 회원 정보입니다."}, status=400)
         
-        refresh = RefreshToken.for_user(User)
+        refresh = RefreshToken.for_user(user)
         return Response({
             "refresh": str(refresh),
             "access" : str(refresh.access_token),
-            "user" : LoginSerializer.data
+            "user" : LoginSerializer(user).data
         })
