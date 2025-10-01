@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include("boarduser.urls")),
     path('board/', include("board.urls")),
+    path('comment/', include("comment.urls"))
 ]

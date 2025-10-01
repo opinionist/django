@@ -16,7 +16,8 @@ class BoardSelectView(generics.ListAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        content = self.kwargs.get("content")
+        content = self.request.query_params.get("content")
+        # content = self.kwargs.get("content")
         return Board.objects.filter(writer = user, content = content)
     
 class BoardUpdateView(generics.UpdateAPIView):
